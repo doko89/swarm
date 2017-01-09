@@ -1,0 +1,25 @@
+- file: path=/{{item}} state=directory
+  with_items: 
+    - storage
+    - data
+
+- name: adding glusterfs repo
+  apt_repository: repo='ppa:gluster/glusterfs-3.8' state=present update_cache=yes
+
+- name: install glusterfs server
+  apt: name=glusterfs-server state=present 
+  notify: restart glusterfs-server
+
+- name: create gluster volume
+  gluster_volume: 
+   state: present 
+   name: storage
+   bricks: /storage  
+   cluster: "master" 
+   force: yes
+  run_once: true
+
+- name: start gluster volume
+  gluster_volume:
+    state: started
+    name: storage

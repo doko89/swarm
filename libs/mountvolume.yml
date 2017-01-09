@@ -1,0 +1,8 @@
+- name: add gluster storage to fstab 
+  lineinfile: 
+   dest: /etc/fstab
+   regexp: '^master:/storage'
+   line: "master:/storage /data glusterfs defaults,_netdev 0 0"
+
+- name: mount glusterfs storage 
+  command: mount.glusterfs master:/storage /data

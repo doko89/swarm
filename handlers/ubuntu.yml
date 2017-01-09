@@ -1,0 +1,26 @@
+- name: start docker
+  service: name=docker state=started
+
+- name: stop docker
+  service: name=docker state=stoped
+  
+- name: restart docker
+  service: name=docker state=restarted
+
+- name: start glusterfs-server
+  service: name=glusterfs-server state=started
+
+- name: stop glusterfs-server
+  service: name=glusterfs-server state=stoped
+
+- name: restart glusterfs-server
+  service: name=glusterfs-server state=restarted
+
+- name: start glusterfs-client
+  service: name=glusterfs-client state=started
+
+- name: stop glusterfs-client
+  service: name=glusterfs-client state=stoped
+
+- name: restart glusterfs-client
+  service: name=glusterfs-client state=restarted

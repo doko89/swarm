@@ -1,0 +1,9 @@
+- file: path=/storage state=directory
+- file: path=/data state=directory
+
+- name: adding glusterfs repo
+  apt_repository: repo='ppa:gluster/glusterfs-3.8' state=present update_cache=yes
+
+- name: install glusterfs client
+  apt: name=glusterfs-client state=latest
+

@@ -1,0 +1,9 @@
+- name: copying bash script
+  template: src=templates/docker.run.j2 dest=/tmp/docker.run mode=777
+
+- name: running bashscript  
+  shell: /tmp/docker.run
+
+- name: fetch join script
+  fetch: src=/tmp/join.bash dest=templates/join.bash flat=yes
+  

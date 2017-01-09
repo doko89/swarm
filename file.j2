@@ -1,0 +1,3 @@
+{% for host in groups['local'] %}
+   {{ hostvars[host]['ansible_wlp2s0']['ipv4']['address'] }}
+{% endfor %}

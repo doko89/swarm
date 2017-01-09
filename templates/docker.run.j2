@@ -1,0 +1,19 @@
+#!/bin/bash
+### bashscript for running docker
+
+
+docker swarm init --advertise-addr {{masterip}}:2377 |grep "    "|tee /tmp/join.bash
+
+docker network create --driver overlay networkapp
+networkapp=$(curl -w "\n" 'https://discovery.etcd.io/new?size=1')
+docker service create \
+--name etcd \
+--replicas 1 \
+--network networkapp \
+-p 2379:2379 \
+-p 2380:2380 \
+-p 4001:4001 \
+-p 7001:7001 \
+elcolio/etcd:latest \
+-name etcd \
+-discovery=$networkapp

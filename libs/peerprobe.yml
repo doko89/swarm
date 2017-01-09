@@ -1,0 +1,3 @@
+- name: connecting gluster client
+  command: gluster peer probe {{item}}
+  with_items: "{{group.node}}"

@@ -1,0 +1,16 @@
+- hosts: local
+  become: yes
+  vars_files:
+   - conf/config.yml
+  tasks:
+   - name: test
+     shell: for loop in "{{ groups.node }}" ;do echo "$loop" >> file.text;done
+     register: list
+   - debug: msg=list.stdout_lines
+
+   - name: loop
+     template: src=file.j2 dest=~/file2.text
+
+   - name: Name for this sentence.
+     include: libs/hosts.yml
+     

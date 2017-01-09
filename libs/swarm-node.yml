@@ -1,0 +1,6 @@
+- name: copying script
+  copy: src=templates/join.bash dest=/tmp/join.bash mode=777
+  
+- name: joining node to swarm
+  command: bash /tmp/join.bash
+  

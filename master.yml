@@ -1,0 +1,12 @@
+- hosts: master
+  vars_files:
+    - conf/config.yml
+  handlers:
+    - include: handlers/ubuntu.yml
+  tasks:
+    - include: libs/apt.yml
+    - include: libs/hosts.yml
+    - include: libs/gluster-client.yml
+    - include: libs/docker.yml
+    - include: libs/swarm-master.yml
+    - include: libs/portainer.yml
